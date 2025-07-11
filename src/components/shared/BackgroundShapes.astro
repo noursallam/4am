@@ -1,0 +1,93 @@
+---
+// Moving blurred shapes for backgrounds
+---
+
+<div class="fixed inset-0 overflow-hidden -z-10 pointer-events-none">
+  <!-- Mobile optimized shapes -->
+  <div class="sm:hidden">
+    <!-- Mobile Primary blob -->
+    <div class="absolute top-[10%] left-[10%] w-48 h-48 bg-primary/30 rounded-full mix-blend-multiply filter blur-2xl opacity-20 animate-blob"></div>
+    
+    <!-- Mobile Secondary blob -->
+    <div class="absolute top-[30%] right-[5%] w-40 h-40 bg-purple-300 dark:bg-purple-800/40 rounded-full mix-blend-multiply filter blur-2xl opacity-20 animate-blob animation-delay-2000"></div>
+    
+    <!-- Mobile Third blob -->
+    <div class="absolute bottom-[20%] right-[15%] w-36 h-36 bg-yellow-300 dark:bg-yellow-800/40 rounded-full mix-blend-multiply filter blur-2xl opacity-20 animate-blob animation-delay-4000"></div>
+  </div>
+  
+  <!-- Tablet and desktop shapes - hidden on mobile -->
+  <div class="hidden sm:block">
+    <!-- Large primary blob -->
+    <div class="absolute top-[5%] left-[15%] w-72 md:w-96 h-72 md:h-96 bg-primary/30 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+    
+    <!-- Secondary blob -->
+    <div class="absolute top-[25%] right-[20%] w-64 md:w-80 h-64 md:h-80 bg-purple-300 dark:bg-purple-800/40 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+    
+    <!-- Third blob -->
+    <div class="absolute bottom-[15%] right-[30%] w-56 md:w-72 h-56 md:h-72 bg-yellow-300 dark:bg-yellow-800/40 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+    
+    <!-- Fourth blob -->
+    <div class="absolute bottom-[25%] left-[25%] w-48 md:w-64 h-48 md:h-64 bg-pink-300 dark:bg-pink-800/40 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-6000"></div>
+  </div>
+  
+  <!-- Smaller decorative elements visible on all screens -->
+  <div class="absolute top-[45%] left-[50%] w-24 h-24 bg-green-300 dark:bg-green-800/40 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+  <div class="absolute top-[85%] left-[5%] w-16 h-16 bg-blue-300 dark:bg-blue-800/40 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse animation-delay-3000"></div>
+  <div class="absolute top-[10%] right-[5%] w-16 h-16 bg-orange-300 dark:bg-orange-800/40 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse animation-delay-5000"></div>
+</div>
+
+<style>
+  @keyframes blob {
+    0% {
+      transform: translate(0px, 0px) scale(1);
+    }
+    33% {
+      transform: translate(30px, -20px) scale(1.05);
+    }
+    66% {
+      transform: translate(-15px, 25px) scale(0.95);
+    }
+    100% {
+      transform: translate(0px, 0px) scale(1);
+    }
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 0.2;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.3;
+      transform: scale(1.05);
+    }
+  }
+  
+  .animate-blob {
+    animation: blob 20s infinite alternate;
+  }
+  
+  .animate-pulse {
+    animation: pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+  
+  .animation-delay-3000 {
+    animation-delay: 3s;
+  }
+  
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+  
+  .animation-delay-5000 {
+    animation-delay: 5s;
+  }
+  
+  .animation-delay-6000 {
+    animation-delay: 6s;
+  }
+</style>

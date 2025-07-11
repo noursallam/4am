@@ -1,0 +1,22 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/sections/Hero.astro';
+import Services from '../components/sections/Services.astro';
+import ServicesSlider from '../components/sections/ServicesSlider.astro';
+import AboutUs from '../components/sections/AboutUs.astro';
+import Features from '../components/sections/Features.astro';
+import CTA from '../components/sections/CTA.astro';
+import Brands from '../components/sections/Brands.astro';
+---
+
+<Layout title="4AM Agency - وكالة تسويق وتصميم رقمي متكاملة">
+	<main class="flex flex-col gap-y-20 md:gap-y-32 overflow-hidden">
+		<Hero/>
+		<Services/>  <!-- What we offer right after hero -->
+		<ServicesSlider/> <!-- Services slider with large images -->
+		<AboutUs/>
+		<Features/>
+		<Brands/>  <!-- Brands moved below Features -->
+		<CTA/>
+	</main>
+</Layout>

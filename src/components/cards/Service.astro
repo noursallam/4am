@@ -1,0 +1,57 @@
+---
+import Paragraph from '../shared/Paragraph.astro';
+
+export interface Props {
+    title: string,
+    description: string,
+    icon: string,
+    mobileImage?: string,
+    desktopImage?: string,
+    index?: number
+}
+
+const {title, description, icon, mobileImage, desktopImage, index = 0} = Astro.props;
+const delay = 100 + (index * 50);
+---
+
+<div class="p-5 sm:p-6 lg:p-8 rounded-3xl border border-box-border bg-white dark:bg-gray-800 shadow-lg shadow-box-shadow relative overflow-hidden group transition-all duration-300 hover:shadow-xl hover:border-primary/30 hover:-translate-y-2"
+    data-aos="fade-up" data-aos-delay={delay}>
+    
+    {(mobileImage || desktopImage) && (
+        <div class="mb-6 overflow-hidden rounded-xl aspect-video">
+            <picture>
+                {desktopImage && <source media="(min-width: 768px)" srcset={desktopImage} />}
+                <img 
+                    src={mobileImage || desktopImage} 
+                    alt={title}
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
+                />
+            </picture>
+        </div>
+    )}
+    
+    <div class="rounded-xl bg-primary/10 dark:bg-gray-900 p-3 text-primary w-max relative transition-all duration-300 group-hover:bg-primary/20 group-hover:text-primary">
+        <slot set:html={icon} />
+    </div>
+    <div class="mt-6 space-y-4 relative">
+        <h2 class="text-lg md:text-xl font-semibold text-heading-2 transition-colors duration-300 group-hover:text-primary">
+            {title}
+        </h2>
+        <Paragraph>
+            {description}
+        </Paragraph>
+        <div class="flex justify-end mt-6">
+            <a href="#" class="text-sm text-primary opacity-0 transform translate-y-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 inline-flex items-center gap-1">
+                المزيد
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 rtl:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+            </a>
+        </div>
+    </div>
+    
+    <!-- Decorative elements -->
+    <span class="absolute w-32 aspect-square -bottom-16 -right-16 bg-primary/10 rounded-full transition-transform duration-500 group-hover:scale-150 group-hover:opacity-80"></span>
+    <span class="absolute w-12 h-12 -top-6 -left-6 bg-yellow-500/10 rounded-full transition-transform duration-500 group-hover:scale-150"></span>
+</div>

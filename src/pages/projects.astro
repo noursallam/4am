@@ -1,0 +1,30 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Container from "../components/shared/Container.astro";
+import Title from "../components/shared/Title.astro";
+import Paragraph from "../components/shared/Paragraph.astro";
+import BehanceCard from "../components/cards/BehanceCard.astro";
+---
+
+<Layout title="مشاريعنا | 4AM Agency">
+  <main class="pt-32 pb-20">
+    <Container>
+      <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+        <Title> معرض أعمالنا </Title>
+        <Paragraph>
+          نفخر بتقديم مجموعة متميزة من المشاريع الإبداعية عبر منصة Behance. كل
+          مشروع يعكس رؤيتنا الإبداعية وقدرتنا على تحقيق نتائج ملموسة للعملاء
+        </Paragraph>
+      </div>
+
+      <!-- Behance Showcase Card -->
+      <div
+        class="mt-10 mb-20 max-w-5xl mx-auto"
+        data-aos="fade-up"
+        data-aos-delay="100"
+      >
+        <BehanceCard behanceUrl="https://www.behance.net/4amadvagency" />
+      </div>
+    </Container>
+  </main>
+</Layout>

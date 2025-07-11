@@ -1,0 +1,93 @@
+---
+import Container from "../shared/Container.astro";
+---
+
+<section class="relative mt-16 md:mt-20">
+  <Container>
+    <div class="mx-auto p-5 sm:p-6 py-8 sm:py-10 max-w-5xl rounded-3xl bg-box-bg border border-box-border 
+      shadow-lg shadow-box-shadow md:divide-x rtl:md:divide-x-reverse divide-box-border 
+      grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-8 md:gap-6 lg:gap-12
+       hover:border-primary/20 transition-colors duration-300"
+      data-aos="fade-up" data-aos-delay="200">
+      
+      <div class="text-center group">
+        <h2 class="font-semibold text-xl sm:text-2xl md:text-4xl text-heading-1 group-hover:text-primary transition-colors">
+          <span class="number-animation" data-value="120">0</span>+
+        </h2>
+        <p class="mt-2 text-heading-3">عميل </p>
+      </div>
+
+      <div class="text-center group">
+        <h2 class="font-semibold text-xl sm:text-2xl md:text-4xl text-heading-1 group-hover:text-primary transition-colors">
+          <span class="number-animation" data-value="100">0</span>+
+        </h2>
+        <p class="mt-2 text-heading-3">مشروع ناجح</p>
+      </div>
+
+      <!-- <div class="text-center group">
+        <h2 class="font-semibold text-xl sm:text-2xl md:text-4xl text-heading-1 group-hover:text-primary transition-colors">
+          <span class="number-animation" data-value="10">0</span>+
+        </h2>
+        <p class="mt-2 text-heading-3">جوائز إبداعية</p>
+      </div> -->
+
+      <div class="text-center group">
+        <h2 class="font-semibold text-xl sm:text-2xl md:text-4xl text-heading-1 group-hover:text-primary transition-colors">
+          <span class="number-animation" data-value="2">0</span>+
+        </h2>
+        <p class="mt-2 text-heading-3">سنوات خبرة</p>
+      </div>
+    </div>
+  </Container>
+</section>
+
+<script>
+  // Animate numbers when visible in viewport
+  document.addEventListener('DOMContentLoaded', () => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const numberElements = entry.target.querySelectorAll('.number-animation');
+          
+          numberElements.forEach(element => {
+            const targetValue = parseInt(element.getAttribute('data-value'));
+            const duration = 2000; // animation duration in milliseconds
+            const startTime = performance.now();
+            const startValue = 0;
+            
+            function updateNumber(currentTime) {
+              const elapsedTime = currentTime - startTime;
+              
+              if (elapsedTime < duration) {
+                const progress = elapsedTime / duration;
+                // Use easeOutExpo for smoother animation
+                const animationProgress = 1 - Math.pow(2, -10 * progress);
+                const currentValue = Math.floor(startValue + (targetValue - startValue) * animationProgress);
+                element.textContent = currentValue;
+                requestAnimationFrame(updateNumber);
+              } else {
+                element.textContent = targetValue;
+              }
+            }
+            
+            requestAnimationFrame(updateNumber);
+          });
+          
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+    
+    // Observe the container with the numbers
+    const numberContainer = document.querySelector('.number-animation')?.closest('div')?.parentElement;
+    if (numberContainer) {
+      observer.observe(numberContainer);
+    }
+  });
+</script>
